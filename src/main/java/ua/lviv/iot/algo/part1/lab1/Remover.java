@@ -4,18 +4,22 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Remover {
-    public String removeWordsWithLengthFiveWhichStartWithСonsonantLetter() {
-        String text = "I'm listening to a great song." + "\n" +
-                "We enjoy warm sunsets on the beach." + "\n" +
-                "He drives fast cars and loves speed." + "\n" +
-                "He reads books for hours on end.";
-        String regex = ("\\b[b|c|d|f|g|h|j|k|l|m|n|p|q|r|s|t|v|w|x|z]\\w{4}\\b");
+    public String removeWordsWithLengthFiveWhichStartWithСonsonantLetter(String data) {
+        String regex = ("\\b[bcdfghjklmnpqrstvwxz]\\w{4}\\b");
         Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(text);
-        String editedText = matcher.replaceAll("\"removed word\"");
-        System.out.println(editedText);
-        return editedText;
+        Matcher matcher = pattern.matcher(data);
+        return matcher.replaceAll("");
+    }
+
+    public static void main(String... strings) {
+        String data =
+                """
+                        I'm listening to a great song.
+                        We enjoy warm sunsets on the beach.
+                        He drives fast cars and loves speed.
+                        He reads books for hours on end.
+                        """;
+        Remover remover = new Remover();
+        System.out.println(remover.removeWordsWithLengthFiveWhichStartWithСonsonantLetter(data));
     }
 }
-
-
